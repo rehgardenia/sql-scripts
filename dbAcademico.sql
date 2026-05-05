@@ -10,8 +10,8 @@ MEMBROS DO GRUPO:
 */
 -- Estrutura de Dados 
 
---CREATE DATABASE dbAcademico;
---USE dbAcademico;
+CREATE DATABASE dbAcademico;
+USE dbAcademico;
 
 CREATE TABLE TipoCurso (
   id_tipo int ,
