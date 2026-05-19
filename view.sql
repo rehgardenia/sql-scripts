@@ -124,14 +124,37 @@ SELECT
     cj.nome_conjuge,
     e.nome_empresa
 FROM Cliente c
-LEFT JOIN Conjuge cj 
+INNER JOIN Conjuge cj  
     ON c.id_cliente = cj.id_cliente
+INNER JOIN Empresa e  
+    ON c.id_cliente = e.id_cliente;
+GO
+  
+-- vw_ClientesConjuges --> nome dos clientes e conjuges. Os dados de todos os clientes devem ser retornados, independente de serem casados ou não
+CREATE VIEW vw_ClientesConjuges AS
+SELECT 
+    c.nome AS nome_cliente,
+    cj.nome_conjuge
+FROM Cliente c
+LEFT JOIN Conjuge cj 
+    ON c.id_cliente = cj.id_cliente;
+GO
+
+---- vw_ClientesEmpresas -->nome, CPF , RG, Nome da Empresa e Cargo dos Clientes 
+CREATE VIEW vw_ClientesEmpresas AS
+SELECT 
+    c.nome AS nome_cliente,
+    c.cpf,
+    c.rg,
+    e.nome_empresa,
+    e.cargo
+FROM Cliente c
 LEFT JOIN Empresa e 
     ON c.id_cliente = e.id_cliente;
 GO
 
---- vw_ClientesConjuges --> nome dos clientes e conjuges. Os dados de todos os clientes devem ser retornados, independente de serem casados ou não
----- vw_ClientesEmpresas -->nome, CPF , RG, Nome da Empresa e Cargo dos Clientes 
-
+SELECT * FROM vw_MalaDireta;
 SELECT * FROM vw_InfoClientes;
+SELECT * FROM vw_ClientesConjuges;
+SELECT * FROM vw_ClientesEmpresas;
 GO
